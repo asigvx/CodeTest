@@ -2,7 +2,8 @@
 
 ### How to run
 1. Git clone this repo
-2. Compile and Run
+2. In case there is an error while loading Nuget packages then restore the Nuget packages for the solution and update them if available
+3. Compile and Run
 
 ### Web API Deploying on IIS
 1. Install [.Net Core hosting bundle](https://docs.microsoft.com/en-us/aspnet/core/tutorials/publish-to-iis?view=aspnetcore-5.0&tabs=visual-studio)
