@@ -1,0 +1,92 @@
+﻿@model IEnumerable<MonitoringOfVehicles.Models.VehicleDetails>
+
+@{
+    ViewBag.Title = "Check Vehicles By Status";
+}
+
+<h2>Check Vehicles By Status</h2>
+
+
+@using (Html.BeginForm("GetVehiclesByStatus", "Vehicles", FormMethod.Post))
+{
+
+    <label>  True :   </label>
+    <input type="radio" value="true" id="vehicleStatus" name="vehicleStatus" />
+    <label>  False :   </label>
+    <input type="radio" value="false" id="vehicleStatus" name="vehicleStatus" />
+    <br />
+    <br />
+    <input type="submit" value="Submit" />
+    <br />
+
+
+
+
+}
+@if (Model != null)
+{
+    <br />
+    <br />
+    foreach (var item in Model)
+    {
+        @Html.Label("Below Vehicles have the status : " + item.Vehicles.FirstOrDefault().VehicleStatus)
+
+        <br />
+
+        <dl class="dl-horizontal">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CustomerName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => item.CustomerName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => item.Address)
+            </dd>
+        </dl>
+        <br />
+        @*<table class="table">
+                <tr>
+                    <td>@Html.DisplayNameFor(model => model.CustomerName) -</td>
+                    <td>@Html.DisplayFor(modelItem => item.CustomerName)</td>
+                    <td>@Html.DisplayNameFor(model => model.Address) -</td>
+                    <td>@Html.DisplayFor(modelItem => item.Address)</td>
+                </tr>
+            </table>*@
+        <table class="table">
+            <tr>
+                <th>
+                    Vehicle Id
+                </th>
+                <th>
+                    Registeration Number
+                </th>
+                <th>
+                    Status
+                </th>
+            </tr>
+
+            @foreach (var vehicle in item.Vehicles)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => vehicle.VehicleId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => vehicle.RegistrationNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => vehicle.VehicleStatus)
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+}

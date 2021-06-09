@@ -1,0 +1,64 @@
+﻿@model IEnumerable<MonitoringOfVehicles.Models.VehicleDetails>
+
+@{
+    ViewBag.Title = "VehiclesList";
+}
+
+<h2>Vehicles List</h2>
+
+@foreach (var item in Model)
+{
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => item.CustomerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => item.Address)
+        </dd>
+    </dl>
+    @*<table class="table">
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.CustomerName) -</td>
+                <td>@Html.DisplayFor(modelItem => item.CustomerName)</td>
+                <td>@Html.DisplayNameFor(model => model.Address) -</td>
+                <td>@Html.DisplayFor(modelItem => item.Address)</td>
+            </tr>
+        </table>*@
+    <table class="table">
+        <tr>
+            <th>
+                Vehicle Id
+            </th>
+            <th>
+                Registeration Number
+            </th>
+            <th>
+                Status
+            </th>
+        </tr>
+
+        @foreach (var vehicle in item.Vehicles)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => vehicle.VehicleId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => vehicle.RegistrationNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => vehicle.VehicleStatus)
+                </td>
+            </tr>
+        }
+    </table>
+}

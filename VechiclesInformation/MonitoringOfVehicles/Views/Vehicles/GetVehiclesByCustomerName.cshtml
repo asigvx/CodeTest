@@ -1,0 +1,75 @@
+﻿@model MonitoringOfVehicles.Models.VehicleDetails
+
+@{
+    ViewBag.Title = "GetVehiclesByCustomerName";
+}
+
+<h2>Get Vehicles By Customer Name</h2>
+<hr />
+
+<div>
+    @using (Html.BeginForm("GetVehiclesByCustomerName", "Vehicles", FormMethod.Post))
+    {
+        <div>
+            <label for="CustomerName">CustomerName</label>
+        </div>
+        <div>
+            <input name="CustomerName" type="text" />
+        </div>
+        <br />
+        <div>
+            <input type="submit" value="Submit" />
+        </div>
+    }
+
+    @if (Model != null)
+    {
+        <br />
+        <dl class="dl-horizontal">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CustomerName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CustomerName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+        </dl>
+        <table class="table">
+            <tr>
+                <th>
+                    Vehicle Id
+                </th>
+                <th>
+                    Registeration Number
+                </th>
+                <th>
+                    Status
+                </th>
+            </tr>
+
+            @foreach (var vehicle in Model.Vehicles)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => vehicle.VehicleId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => vehicle.RegistrationNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => vehicle.VehicleStatus)
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+</div>
